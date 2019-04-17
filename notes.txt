@@ -1,0 +1,20 @@
+gcloud ml speech recognize out001.wav  --language-code='en-US'
+
+
+https://www.podomatic.com/v2/podcasts/3385992/episodes
+
+we don't know either podcast ID = 3385992
+
+r = requests.get("https://www.podomatic.com/v2/podcasts/3385992/episodes")
+r.json()['episodes'][0] <- latest episode
+r.json()['episodes'][0]['media_url']
+
+# not easily scraped.... will need to dump the URLs
+# podcast XML -> podcast page -> podcast iframe (podomatic) -> 
+wget https://streams.podomatic.com/vod/UDS2/94/09/eb/nick98815/media/published/13556195.mp3
+
+ffmpeg -i 13556195.mp3 -acodec pcm_u8 -ar 22050 podcast.wav
+
+ffmpeg -i podcast.wav -ac 1 podcast_mono.wav
+
+fmpeg -i podcast_mono.wav -f segment -segment_time 55 -c copy out%03d.wav
