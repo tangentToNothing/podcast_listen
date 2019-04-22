@@ -2,6 +2,7 @@
 *.mp3
 *.wav
 *.flac
+.DS_Store
 
 tmp/*.wav
 web/*.mp3
